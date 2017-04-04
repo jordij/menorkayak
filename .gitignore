@@ -59,10 +59,10 @@ node_modules/
 .env
 
 # User-uploaded media
-menorkayak/media/
+media/
 
 # Generated css
-menorkayak/core/static/css/main.css
+core/static/css/main.css
 
 
 staticfiles/
