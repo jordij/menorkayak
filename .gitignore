@@ -59,7 +59,7 @@ node_modules/
 .env
 
 # User-uploaded media
-media/
+media/*
 
 # Generated css
 core/static/css/main.css
