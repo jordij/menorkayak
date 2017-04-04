@@ -1,0 +1,22 @@
+nav {
+    font-family: _fontheader(family);
+    font-size: 10pt;
+    background-color: _palette(fg);
+    padding: _size(padding, small) * 0.75;
+    margin: 0;
+
+    > ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        > li {
+            display: inline;
+
+            > a {
+                color: _palette(bg);
+                text-decoration: none;
+            }
+        }
+    }
+}

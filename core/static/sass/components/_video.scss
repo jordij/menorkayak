@@ -1,0 +1,30 @@
+
+/*Video component*/
+
+iframe.video {
+
+    @include breakpoint(xlarge) {
+        width: 65%;
+        height: 450px;
+    }
+
+    @include breakpoint(large) {
+        width: 510px;
+        height: 400px;
+    }
+
+    @include breakpoint(medium) {
+        width: 510px;
+        height: 400px;
+    }
+
+    @include breakpoint(small) {
+        width: 100%;
+        height: 200px;
+    }
+
+    @include breakpoint(xsmall) {
+        width: 100%;
+    }
+
+}

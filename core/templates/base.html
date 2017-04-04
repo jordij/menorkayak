@@ -1,0 +1,49 @@
+{% load static compress %}
+<html>
+    <head>
+        <title>MenorKayak | {% block title %}A GoPro Adventure{% endblock title %}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="The complete tour around Menorca Island by kayak. Experience the journey through the eyes of a GoPro camera. Seven days of paddling around one of the most beautiful islands of the Mediterranean Sea.">
+        <meta name="author" content="Jordi J. Tablada">
+        <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+        <meta property="og:title" content="MenorKayak | {% block seo_title %}A GoPro Adventure{% endblock seo_title %}" />
+        <meta property="og:description" content="The complete tour around Menorca Island by kayak. Experience the journey through the eyes of a GoPro camera. Seven days of paddling around one of the most beautiful islands of the Mediterranean Sea." />
+        <meta property="og:image" content="{{ base_url }}{% static 'images/banners/seo.jpg' %}" />
+        <meta property="og:image:width" content="945">
+        <meta property="og:image:height" content="756">
+        <meta property="og:image:type" content="image/jpg">
+        <meta name="twitter:card" content="photo">
+        <meta name="twitter:title" content="MenorKayak | {% block twitter_title %}A GoPro Adventure{% endblock twitter_title %}">
+        <meta name="twitter:image:src" content="{{ base_url }}{% static 'images/banners/seo.jpg' %}">
+        <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+        {% compress css %}
+        {% block extra_css %}{% endblock extra_css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+        {% endcompress %}
+    </head>
+    <body>
+        {% block nav %}
+            {% include "includes/nav.html" %}
+        {% endblock nav %}
+        <!-- Wrapper -->
+        <div id="wrapper" class="divided">
+            {% block content %}{% endblock content %}
+            {% block footer %}
+                {% include "includes/footer.html" %}
+            {% endblock footer %}
+        </div>
+
+        {% compress js %}
+            <!-- Scripts -->
+            <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+            <script type="text/javascript" src="{% static 'js/jquery.scrollex.min.js' %}"></script>
+            <script type="text/javascript" src="{% static 'js/jquery.scrolly.min.js' %}"></script>
+            <script type="text/javascript" src="{% static 'js/skel.min.js' %}"></script>
+            <script type="text/javascript" src="{% static 'js/util.js' %}"></script>
+            <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+            {% block extra_js %}{% endblock extra_js %}
+        {% endcompress %}
+        {% block inline_js %}{% endblock inline_js %}
+    </body>
+</html>

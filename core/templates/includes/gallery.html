@@ -1,0 +1,33 @@
+{% load static %}
+
+<section id="day-{{ gallery.pk }}" class="wrapper style1 align-center">
+    <div class="inner">
+        <h2>Day {{ gallery.pk }}</h2>
+        <p>From <strong>{{ gallery.starts_at.name }}</strong> to <strong>{{ gallery.ends_at.name }}</strong></p>
+        <p>{{ gallery.description }}</p>
+    </div>
+
+    <ul class="actions small">
+        <li><a href="/#day-{{ gallery.pk }}" class="button special small icon fa-play">Watch</a></li>
+        <li><a href="#map" class="button small smooth-scroll icon fa-map">Map</a></li>
+    </ul>
+
+    <!-- Gallery -->
+    <div class="gallery style2 small lightbox onload-fade-in">
+        {% for picture in gallery.picture_set.enabled %}
+            <article>
+                <a href="{{ picture.image.url }}" class="image">
+                    <img src="{{ picture.image.url }}" alt="">
+                </a>
+                <div class="caption">
+                    <p>{{ picture.name }}</p>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="wrapper style1 align-center">
+    <div class="inner">
+    </div>
+</section>

@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}The Journey's Logbook{% endblock title %}
+{% block seo_title %}The Journey's Logbook{% endblock seo_title %}
+{% block twitter_title %}The Journey's Logbook{% endblock twitter_title %}
+
+{% block content %}
+    <section class="wrapper style1 orient-center content-align-left ">
+        <div class="inner">
+            <h2>The Journey's Logbook</h2>
+            <p>Discover the waters we paddled and the places we explored through this interactive map and the daily galleries below.</p>
+            <div id="map" style="height:100%;width:100%;">
+            <!-- GOOGLE MAP -->
+            </div>
+        </div>
+    </section>
+
+    {% for day in days %}
+        {% include "includes/gallery.html" with gallery=day %}
+    {% endfor %}
+
+{% endblock content %}
+
+{% block extra_js %}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCICF0YttFKLLY5ieNQjeuQXP4DeWs7bjo&libraries=geometry"></script>
+    <script type="text/javascript" src="{% static 'js/map-icons.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
+{% endblock extra_js %}
+
+{% block inline_js %}
+    <script type="text/javascript">
+        function initializeMapElements(map) {
+            {% for place in places %}
+                var latlng_{{ forloop.counter }} = new google.maps.LatLng({{ place.lat }}, {{ place.lon }});
+                var marker_{{ forloop.counter }} = new Marker({
+                    position: latlng_{{ forloop.counter }},
+                    map: map,
+                    title:"{{ place.name|safe }}",
+                    icon: {
+                        path: SQUARE_ROUNDED,
+                        fillColor: '#333',
+                        fillOpacity: 1,
+                        strokeColor: '',
+                        strokeWeight: 0
+                    },
+                    map_icon_label: '<span class="map-icon map-icon-kayaking"></span>'
+                });
+
+            {% endfor %}
+
+            var infoWindowDays = Array(),
+                paths = Array(),
+                actives = Array();
+
+            {% for day in days %}
+                var line = new Array();
+                var i = 0;
+                var polylineLength = 0;
+                {% for point in day.point_set.all %}
+                    var point = new google.maps.LatLng({{ point.lat }}, {{ point.lon }});
+                    line.push(point);
+                    if (i > 0) polylineLength += google.maps.geometry.spherical.computeDistanceBetween(line[i], line[i-1]);
+                    i++;
+                {% endfor %}
+                var path_{{ forloop.counter }} = new google.maps.Polyline({
+                  path: line,
+                  strokeColor: "#00CCBB",
+                  strokeOpacity: 1.0,
+                  strokeWeight: 3
+                });
+                paths.push(path_{{ forloop.counter }});
+                path_{{ forloop.counter }}.setMap(map);
+
+                // <img src=\"/static/images/minis/{{ forloop.counter }}.jpg\">
+                var polyline_distance = "<p style='margin: 0 0 0.5rem 0;'>Estimated distance: " + Math.ceil(polylineLength/1000) + " km." + "</p>"
+                var dayContent_{{ forloop.counter }} = "<div style='text-align:center;overflow:hidden;'><h5 style='margin: 0.5rem 0 0.5rem 0;'>Day {{ day.pk }}</h5><p style='margin: 0 0 0.5rem 0;'><strong>{{ day.starts_at.name }}</strong> to <strong>{{ day.ends_at.name }}</strong></p>" + polyline_distance + "<a href='#day-{{ day.pk }}' class='button special small smooth-scroll icon fa-compass'>Logbook</a></div>"
+
+                var infoWindowDay_{{ forloop.counter }} = new google.maps.InfoWindow({
+                    content: dayContent_{{ forloop.counter }},
+                    position: new google.maps.LatLng({{ day.starts_at.lat }},{{ day.starts_at.lon }})
+                });
+                infoWindowDays.push(infoWindowDay_{{ forloop.counter }});
+
+                google.maps.event.addListener(marker_{{ forloop.counter }}, 'click', function() {
+                  infoWindowDays.forEach(function(element, index, array){
+                    element.close();
+                  });
+                  infoWindowDay_{{ forloop.counter }}.open(map,marker_{{ forloop.counter }});
+                  paths.forEach(function(element, index, array){
+                    element.setOptions(
+                      {
+                        strokeColor: "#00CCBB",
+                        strokeWeight: 3
+                      }
+                    );
+                  });
+                  path_{{ forloop.counter }}.setOptions(
+                    {
+                      strokeColor: "#00bb12",
+                      strokeWeight: 5
+                    }
+                  );
+                });
+            {% endfor %}
+        }
+    </script>
+{% endblock inline_js %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/map-icons.css' %}" />
+{% endblock extra_css %}
