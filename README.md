@@ -1,4 +1,4 @@
-[ ![Codeship Status for jordij/menorkayak](https://codeship.com/projects/211441/status?branch=master)](https://codeship.com/projects/211441)
+[ ![Codeship Status for jordij/menorkayak](https://codeship.com/projects/5ef0f9e0-fb2f-0134-7062-02a6a40c3d5e/status?branch=master)](https://codeship.com/projects/211441)
 
 menorkayak
 ==========
