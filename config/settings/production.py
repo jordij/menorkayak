@@ -16,6 +16,9 @@ from django.utils import six
 
 from .base import *  # noqa
 
+# Use .env file
+READ_DOT_ENV_FILE = True
+
 # SECRET CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
