@@ -53,7 +53,7 @@ X_FRAME_OPTIONS = 'DENY'
 # ------------------------------------------------------------------------------
 # Hosts/domain names that are valid for this site
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['menorkayak.com', ])
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['.menorkayak.com', ])
 # END SITE CONFIGURATION
 
 INSTALLED_APPS += ['gunicorn', ]
@@ -140,7 +140,7 @@ DATABASES['default'] = env.db('DATABASE_URL')
 # CACHING
 # ------------------------------------------------------------------------------
 
-REDIS_LOCATION = '{0}/{1}'.format(env('REDIS_URL', default='redis://127.0.0.1:6379'), 0)
+REDIS_LOCATION = '{0}/{1}'.format(env('REDIS_URL', default='redis://127.0.0.1:6379'), 1)
 # Heroku URL does not pass the DB number, so we parse it in
 CACHES = {
     'default': {
@@ -164,6 +164,9 @@ CACHES = {
 # the site admins on every HTTP 500 error when DEBUG=False.
 # See https://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
+
+LOGS_DIR = ROOT_DIR.path('log')
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -184,21 +187,23 @@ LOGGING = {
             'filters': ['require_debug_false', ],
             'class': 'django.utils.log.AdminEmailHandler'
         },
-        'console': {
+        'file': {
             'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': str(LOGS_DIR.path('menorkayak.log')),
             'formatter': 'verbose',
+            'maxBytes': 1024 * 1024 * 50,
         },
     },
     'loggers': {
         'django.request': {
-            'handlers': ['mail_admins', ],
+            'handlers': ['mail_admins', 'file' ],
             'level': 'ERROR',
             'propagate': True
         },
         'django.security.DisallowedHost': {
             'level': 'ERROR',
-            'handlers': ['console', 'mail_admins', ],
+            'handlers': ['file', 'mail_admins', ],
             'propagate': True
         }
     }
