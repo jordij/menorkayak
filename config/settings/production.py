@@ -99,7 +99,10 @@ MEDIA_URL = 'https://%s/%s/media/' % (AWS_S3_HOST, AWS_STORAGE_BUCKET_NAME)
 # ------------------------
 
 STATIC_URL = 'https://%s/%s/static/' % (AWS_S3_HOST, AWS_STORAGE_BUCKET_NAME)
-STATICFILES_STORAGE = 'config.settings.production.StaticRootS3BotoStorage'
+STATICFILES_STORAGE = 'config.storage.CachedS3BotoStorage'
+# 'config.settings.production.StaticRootS3BotoStorage'
+COMPRESS_STORAGE = STATICFILES_STORAGE
+COMPRESS_URL = STATIC_URL
 # See: https://github.com/antonagestam/collectfast
 # For Django 1.7+, 'collectfast' should come before
 # 'django.contrib.staticfiles'
@@ -192,6 +195,4 @@ LOGGING = {
 
 # Custom Admin URL, use {% url 'admin:index' %}
 ADMIN_URL = env('DJANGO_ADMIN_URL')
-
 BASE_URL = 'https://menorkayak.com'
-
