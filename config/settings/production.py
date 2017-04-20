@@ -103,6 +103,11 @@ STATICFILES_STORAGE = 'config.storage.CachedS3BotoStorage'
 # 'config.settings.production.StaticRootS3BotoStorage'
 COMPRESS_STORAGE = STATICFILES_STORAGE
 COMPRESS_URL = STATIC_URL
+COMPRESS_CSS_FILTERS = (
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter',
+)
+COMPRESS_OFFLINE = True
 # See: https://github.com/antonagestam/collectfast
 # For Django 1.7+, 'collectfast' should come before
 # 'django.contrib.staticfiles'
