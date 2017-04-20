@@ -172,7 +172,7 @@ LOGGING = {
     },
     'handlers': {
         'file': {
-            'level': 'DEBUG',
+            'level': 'ERROR',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': str(LOGS_DIR.path('menorkayak.log')),
             'formatter': 'verbose',
