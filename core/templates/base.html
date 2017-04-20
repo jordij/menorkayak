@@ -20,7 +20,6 @@
 
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Libre+Baskerville:700|Libre+Franklin:400,400i,700"/>
         <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}" />
-
         {% compress css %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/lity.css' %}" />
         <link rel="stylesheet" type="text/css" href="{% static 'css/map-icons.css' %}" />
@@ -49,6 +48,7 @@
             <script type="text/javascript" src="{% static 'js/lity.js' %}"></script>
             <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
         {% endcompress %}
+        {% block noncompressed_js %}{% endblock noncompressed_js %}
         {% compress js %}
         {% block extra_js %}{% endblock extra_js %}
         {% endcompress %}
