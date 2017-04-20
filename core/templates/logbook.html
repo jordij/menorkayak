@@ -23,12 +23,12 @@
 {% endblock content %}
 
 {% block extra_js %}
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCICF0YttFKLLY5ieNQjeuQXP4DeWs7bjo&libraries=geometry"></script>
     <script type="text/javascript" src="{% static 'js/map-icons.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
 {% endblock extra_js %}
 
 {% block inline_js %}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCICF0YttFKLLY5ieNQjeuQXP4DeWs7bjo&libraries=geometry"></script>
     <script type="text/javascript">
         function initializeMapElements(map) {
             {% for place in places %}
