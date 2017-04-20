@@ -98,7 +98,7 @@ MEDIA_URL = 'https://%s/%s/media/' % (AWS_S3_HOST, AWS_STORAGE_BUCKET_NAME)
 # Static Assets
 # ------------------------
 
-STATIC_URL = 'https://%s/%s/static/' % (AWS_S3_HOST, AWS_STORAGE_BUCKET_NAME)
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_HOST, AWS_STORAGE_BUCKET_NAME)
 STATICFILES_STORAGE = 'config.storage.CachedS3BotoStorage'
 # 'config.settings.production.StaticRootS3BotoStorage'
 COMPRESS_STORAGE = STATICFILES_STORAGE
