@@ -105,7 +105,7 @@ COMPRESS_URL = STATIC_URL
 COMPRESS_CSS_FILTERS = (
     'compressor.filters.cleancss.CleanCSSFilter',
 )
-COMPRESS_CLEAN_CSS_BINARY = ''
+COMPRESS_CLEAN_CSS_BINARY = str(ROOT_DIR) + 'node_modules/.bin/cleancss'
 COMPRESS_OFFLINE = True
 # See: https://github.com/antonagestam/collectfast
 # For Django 1.7+, 'collectfast' should come before
