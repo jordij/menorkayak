@@ -3,7 +3,6 @@
 Production Configurations
 
 - Use Amazon's S3 for storing static files and uploaded media
-- Use mailgun to send emails
 - Use Redis for cache
 
 
@@ -106,21 +105,6 @@ STATICFILES_STORAGE = 'config.settings.production.StaticRootS3BotoStorage'
 AWS_PRELOAD_METADATA = True
 INSTALLED_APPS = ['collectfast', ] + INSTALLED_APPS
 
-# EMAIL
-# ------------------------------------------------------------------------------
-# DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL',
-#                          default='menorkayak <noreply@menorkayak.com>')
-# EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='[menorkayak]')
-# SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
-
-# # Anymail with Mailgun
-# INSTALLED_APPS += ['anymail', ]
-# ANYMAIL = {
-#     'MAILGUN_API_KEY': env('DJANGO_MAILGUN_API_KEY'),
-#     'MAILGUN_SENDER_DOMAIN': env('MAILGUN_SENDER_DOMAIN')
-# }
-# EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
-
 # TEMPLATE CONFIGURATION
 # ------------------------------------------------------------------------------
 # See:
@@ -159,9 +143,7 @@ CACHES = {
 # LOGGING CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#logging
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error when DEBUG=False.
+# A sample logging configuration.
 # See https://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
 
@@ -182,11 +164,6 @@ LOGGING = {
         },
     },
     'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'filters': ['require_debug_false', ],
-            'class': 'django.utils.log.AdminEmailHandler'
-        },
         'file': {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
@@ -197,13 +174,13 @@ LOGGING = {
     },
     'loggers': {
         'django.request': {
-            'handlers': ['mail_admins', 'file' ],
+            'handlers': ['file'],
             'level': 'ERROR',
             'propagate': True
         },
         'django.security.DisallowedHost': {
             'level': 'ERROR',
-            'handlers': ['file', 'mail_admins', ],
+            'handlers': ['file'],
             'propagate': True
         }
     }
