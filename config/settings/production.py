@@ -198,6 +198,14 @@ LOGGING = {
     }
 }
 
+MIDDLEWARE_CLASSES += (
+   'django.middleware.cache.UpdateCacheMiddleware',
+   'django.middleware.cache.FetchFromCacheMiddleware',
+)
+CACHE_MIDDLEWARE_ALIAS = 'mk'
+CACHE_MIDDLEWARE_SECONDS = 31449600  # 1 year
+CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_MIDDLEWARE_ALIAS
+
 # Custom Admin URL, use {% url 'admin:index' %}
 ADMIN_URL = env('DJANGO_ADMIN_URL')
 BASE_URL = 'https://menorkayak.com'
