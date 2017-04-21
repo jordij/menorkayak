@@ -25,7 +25,7 @@ $(document).ready(function() {
           var zfactor = Math.pow(2,zoom);
 
           if ((zoom < mapMinZoom) || (zoom > mapMaxZoom)) {
-              return 'https://s3.eu-central-1.amazonaws.com/menorkayak/static/images/none.png';
+              return 'https://s3.eu-central-1.amazonaws.com/menorkayak/images/none.png';
           }
           var ymax = 1 << zoom;
           var y = ymax - coord.y -1;
@@ -34,9 +34,9 @@ $(document).ready(function() {
               map.getProjection().fromPointToLatLng( new google.maps.Point( ((coord.x+1)*256)/ zfactor, ((coord.y)*256 )/ zfactor ) )
           );
           if (mapBounds.intersects(tileBounds)) {
-              return 'https://s3.eu-central-1.amazonaws.com/menorkayak/static/images/overlay/'+zoom+"/"+coord.x+"/"+y+".png";
+              return 'https://s3.eu-central-1.amazonaws.com/menorkayak/images/overlay/'+zoom+"/"+coord.x+"/"+y+".png";
           } else {
-              return 'https://s3.eu-central-1.amazonaws.com/menorkayak/static/images/none.png';
+              return 'https://s3.eu-central-1.amazonaws.com/menorkayak/images/none.png';
           }
         },
         tileSize: new google.maps.Size(256, 256),

@@ -129,7 +129,7 @@ MIDDLEWARE = [
     'django.middleware.cache.FetchFromCacheMiddleware',
 ] + MIDDLEWARE
 
-CACHE_MIDDLEWARE_ALIAS = 'mk'
+CACHE_MIDDLEWARE_ALIAS = 'default'
 CACHE_MIDDLEWARE_SECONDS = 2592000  # 1 month
 
 # DATABASE CONFIGURATION
