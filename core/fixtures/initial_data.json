@@ -244,7 +244,7 @@
         "lat": "40.026234",
         "lon": "4.193344",
         "name": "Good morning!",
-        "thumbnail": "/thumbnails/.jpg",
+        "thumbnail": "/thumbnails/GOPR0415.jpg",
         "image": "/GOPR0415.jpg",
         "created_at": "2014-01-21T08:41:27Z",
         "updated_at": "2014-01-21T08:41:48Z",
@@ -469,7 +469,7 @@
         "lon": "4.045715",
         "name": "Trying the mud baths",
         "image": "/GOPR0066.jpg",
-        "thumbnail": "/thumbnails/.GOPR0066jpg",
+        "thumbnail": "/thumbnails/GOPR0066.jpg",
         "created_at": "2014-01-21T15:27:18Z",
         "updated_at": "2014-01-21T20:21:08Z",
         "day": 3
