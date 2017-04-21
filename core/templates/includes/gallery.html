@@ -17,7 +17,7 @@
         {% for picture in gallery.picture_set.enabled %}
             <article>
                 <a href="{{ picture.image.url }}" class="image">
-                    <img src="{{ picture.image.url }}" alt="">
+                    <img src="{{ picture.thumbnail.url }}" alt="">
                 </a>
                 <div class="caption">
                     <p>{{ picture.name }}</p>

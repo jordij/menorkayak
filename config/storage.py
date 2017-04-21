@@ -16,3 +16,11 @@ class CachedS3BotoStorage(S3BotoStorage):
         self.local_storage._save(name, content)
         super(CachedS3BotoStorage, self).save(name, self.local_storage._open(name))
         return name
+
+
+class S3CustomStorage(S3BotoStorage):
+    def _normalize_name(self, name):
+        """
+        Get rid of this crap: http://stackoverflow.com/questions/12535123/django-storages-and-amazon-s3-suspiciousoperation
+        """
+        return name
