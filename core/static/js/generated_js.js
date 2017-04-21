@@ -1,5 +1,4 @@
 /* Generated inline JS from logbook.html */
-<script type="text/javascript">
 function initializeMapElements(map) {
 
         var latlng_1 = new google.maps.LatLng(39.921718, 4.271450);
@@ -1322,4 +1321,3 @@ function initializeMapElements(map) {
         });
 
 }
-</script>
