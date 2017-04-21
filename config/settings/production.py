@@ -72,6 +72,7 @@ AWS_AUTO_CREATE_BUCKET = False
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
 AWS_S3_HOST = 's3.eu-central-1.amazonaws.com'
+AWS_IS_GZIPPED = True
 
 # AWS cache settings, don't change unless you know what you're doing:
 AWS_EXPIRY = 60 * 60 * 24 * 7

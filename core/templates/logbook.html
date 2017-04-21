@@ -29,7 +29,12 @@
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'js/map-icons.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
+    {% if not debug %}
+        <script type="text/javascript" src="{% static 'js/generated_js.js' %}"></script>
+    {% endif %}
 {% endblock extra_js %}
+
+{% if debug %}
 
 {% block inline_js %}
     <script type="text/javascript">
@@ -108,3 +113,4 @@
         }
     </script>
 {% endblock inline_js %}
+{% endif %}
