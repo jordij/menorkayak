@@ -75,7 +75,6 @@
                 paths.push(path_{{ forloop.counter }});
                 path_{{ forloop.counter }}.setMap(map);
 
-                // <img src=\"/static/images/minis/{{ forloop.counter }}.jpg\">
                 var polyline_distance = "<p style='margin: 0 0 0.5rem 0;'>Estimated distance: " + Math.ceil(polylineLength/1000) + " km." + "</p>"
                 var dayContent_{{ forloop.counter }} = "<div style='text-align:center;overflow:hidden;'><h5 style='margin: 0.5rem 0 0.5rem 0;'>Day {{ day.pk }}</h5><p style='margin: 0 0 0.5rem 0;'><strong>{{ day.starts_at.name }}</strong> to <strong>{{ day.ends_at.name }}</strong></p>" + polyline_distance + "<a href='#day-{{ day.pk }}' class='button special small smooth-scroll icon fa-compass'>Logbook</a></div>"
 

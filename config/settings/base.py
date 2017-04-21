@@ -210,8 +210,4 @@ AUTH_PASSWORD_VALIDATORS = [
 # SLUGLIFIER
 AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 
-
-# Location of root django.contrib.admin URL, use {% url 'admin:index' %}
-ADMIN_URL = r'^admin/'
-
 BASE_URL = 'http://localhost:8000'

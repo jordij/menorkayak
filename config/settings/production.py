@@ -105,7 +105,7 @@ COMPRESS_URL = STATIC_URL
 COMPRESS_CSS_FILTERS = (
     'compressor.filters.cleancss.CleanCSSFilter',
 )
-COMPRESS_CLEAN_CSS_BINARY = str(ROOT_DIR) + 'node_modules/.bin/cleancss'
+COMPRESS_CLEAN_CSS_BINARY = str(ROOT_DIR) + '/node_modules/clean-css-cli/bin/cleancss'
 COMPRESS_OFFLINE = True
 # See: https://github.com/antonagestam/collectfast
 # For Django 1.7+, 'collectfast' should come before
@@ -121,6 +121,16 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
     ('django.template.loaders.cached.Loader', [
         'django.template.loaders.filesystem.Loader', 'django.template.loaders.app_directories.Loader', ]),
 ]
+
+# CACHE
+
+MIDDLEWARE = [
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
+] + MIDDLEWARE
+
+CACHE_MIDDLEWARE_ALIAS = 'mk'
+CACHE_MIDDLEWARE_SECONDS = 2592000  # 1 month
 
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -197,6 +207,4 @@ LOGGING = {
     }
 }
 
-# Custom Admin URL, use {% url 'admin:index' %}
-ADMIN_URL = env('DJANGO_ADMIN_URL')
 BASE_URL = 'https://menorkayak.com'
