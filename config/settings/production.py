@@ -9,7 +9,7 @@ Production Configurations
 """
 from __future__ import absolute_import, unicode_literals
 
-from datetime import datetime, timedelta
+from datetime import date, timedelta
 
 from boto.s3.connection import OrdinaryCallingFormat
 from django.utils import six
@@ -85,7 +85,7 @@ AWS_EXPIRY = 60 * 60 * 24 * 7
 AWS_HEADERS = {
     'Cache-Control': six.b('max-age=%d, s-maxage=%d, must-revalidate' % (
         AWS_EXPIRY, AWS_EXPIRY)),
-    'Expires': (datetime.utcnow() + timedelta(days=(30))).strftime("%a, %d %b %Y %H:%M:%S GMT"),  # 1 month expire date
+    'Expires': (date.today() + timedelta(days=30)).strftime('%a, %d %b %Y 20:00:00 GMT')  # 1 month expire date
 }
 
 # URL that handles the media served from MEDIA_ROOT, used for managing
