@@ -6,6 +6,7 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
+from django.contrib.sitemaps.views import sitemap
 
 
 from core import views
@@ -16,7 +17,7 @@ urlpatterns = [
     url(r'^about/$', TemplateView.as_view(template_name='about.html'), name='about'),
     url(r'^robots\.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
     url(r'^humans\.txt', TemplateView.as_view(template_name='humans.txt', content_type='text/plain')),
-    url('^sitemap\.xml$', TemplateView.as_view(template_name='humans.txt', content_type='text/xml')),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': {}}, name='django.contrib.sitemaps.views.sitemap'),
     url(r'^django-admin/', admin.site.urls),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
