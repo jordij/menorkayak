@@ -3,15 +3,32 @@
 menorkayak
 ==========
 
-The complete tour around Menorca Island by kayak.
+Codebase for my site https://menorkayak.com - The complete tour around Menorca Island by kayak.
 
+```
+                 __
+                 \_\
+                    \_()
+                     \/>
+             .--===='-\_====--.
+   ~^jgs~_~^~-^_^~-^~^-\_\^~-^~-^~^_^~^~
+    ~^~-~^~^~-~^~^~^-^~^~^~~-~^~^~-~^~^~
+```
 
 Basic Commands
 --------------
+Server up:
 
 ```
 $ docker-compose -f dev.yml up
 ```
+
+Build css:
+
+```
+$ sass core/static/sass/main.scss > core/static/css/main.css
+```
+
 
 Docker
 ^^^^^^
