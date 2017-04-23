@@ -11,6 +11,8 @@
     </ul>
 </div>
 <div class="image">
-    <img src="{% static 'images/banners/' %}{{ item.pk }}.jpg" alt>
-    <a href="//vimeo.com/{{ item.vimeo_id }}" data-lity class="button special big wide icon fa-play"">Watch</a>
+    <a href="//vimeo.com/{{ item.vimeo_id }}" data-lity>
+        <img src="{% static 'images/banners/' %}{{ item.pk }}.jpg" alt>
+        <span class="button special big wide icon fa-play">Watch</span>
+    </a>
 </div>
