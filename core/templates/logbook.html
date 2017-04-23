@@ -10,9 +10,14 @@
         <div class="inner">
             <h2>The Journey's Logbook</h2>
             <p>Discover the waters we paddled and the places we explored through this interactive map and the daily galleries below.</p>
-            <div id="map" style="height:100%;width:100%;">
-            <!-- GOOGLE MAP -->
+            <div style="text-align:center;">
+                <i class="spinner fa fa-refresh fa-spin fa-3x fa-fw"></i>
+                <span class="spinner sr-only">Loading...</span>
+                <div id="map" style="height:100%;width:100%;">
+                <!-- GOOGLE MAP -->
+                </div>
             </div>
+
         </div>
     </section>
 
@@ -39,6 +44,8 @@
 {% block inline_js %}
     <script type="text/javascript">
         function initializeMapElements(map) {
+            $('.spinner').fadeOut(500)
+
             {% for place in places %}
                 var latlng_{{ forloop.counter }} = new google.maps.LatLng({{ place.lat }}, {{ place.lon }});
                 var marker_{{ forloop.counter }} = new Marker({

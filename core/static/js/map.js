@@ -18,7 +18,7 @@ $(document).ready(function() {
       };
 
       map = new google.maps.Map(document.getElementById('map'), myOptions);
-      //Custom tiles overlay
+      // Custom tiles overlay
       var mapBounds = new google.maps.LatLngBounds(new google.maps.LatLng(39.6116914406, 3.619832075), new google.maps.LatLng(40.2854617179, 4.49872734429));
       var imageMapType = new google.maps.ImageMapType({
         getTileUrl: function(coord, zoom, ownerDocument) {
@@ -47,11 +47,7 @@ $(document).ready(function() {
 
       map.overlayMapTypes.push(imageMapType);
 
-      initializeMapElements(map);
-
-      google.maps.event.addListener(map, 'click', function( event ){
-        console.log( "Latitude: "+event.latLng.lat()+"\n"+"Longitude: "+event.latLng.lng() );
-      });
+      google.maps.event.addListenerOnce(map, 'tilesloaded', initializeMapElements(map));
 
     }
 
